@@ -15,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Users\Contracts\UserManager::class, function ($app) {
             return new \App\Users\Services\UserManager();
         });
+        $this->app->bind(\App\Items\Contracts\ItemManager::class, function ($app) {
+            return new \App\Items\Services\ItemManager();
+        });
     }
 
     /**

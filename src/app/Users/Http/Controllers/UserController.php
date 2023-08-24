@@ -3,6 +3,7 @@
 namespace App\Users\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Items\Models\Enums\Status;
 use App\Users\Facades\Users;
 use App\Users\Http\Requests\LoginRequest;
 use App\Users\Http\Resources\UserResource;
