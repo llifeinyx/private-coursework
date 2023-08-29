@@ -19,7 +19,7 @@ class ItemController extends Controller
 {
     /**
      * List items
-     * 
+     *
      * @param SearchRequest $request
      * @return ItemsListResource
      */
@@ -34,7 +34,7 @@ class ItemController extends Controller
 
     /**
      * Show item data
-     * 
+     *
      * @param Item $item
      * @return ItemResource
      */
@@ -47,7 +47,7 @@ class ItemController extends Controller
 
     /**
      * Create a item
-     * 
+     *
      * @param CreateItemRequest $request
      * @return ItemResource
      */
@@ -56,7 +56,7 @@ class ItemController extends Controller
         $this->authorize('create', Item::class);
 
         $data = $request->validated();
-        
+
         try {
             $item = Items::create($data);
         } catch (CreateItemException $e) {
@@ -70,7 +70,7 @@ class ItemController extends Controller
 
     /**
      * Update item data
-     * 
+     *
      * @param Item $item
      * @param UpdateItemRequest $request
      * @return ItemResource
@@ -94,7 +94,7 @@ class ItemController extends Controller
 
     /**
      * Delete item
-     * 
+     *
      * @param Item $item
      */
     public function delete(Item $item)
@@ -107,6 +107,6 @@ class ItemController extends Controller
             return new JsonResponse([
                 'message' => $e->getMessage(),
             ], 400);
-        }        
+        }
     }
 }

@@ -18,6 +18,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Items\Contracts\ItemManager::class, function ($app) {
             return new \App\Items\Services\ItemManager();
         });
+        $this->app->bind(\App\Guests\Contracts\GuestManager::class, function ($app) {
+            return new \App\Guests\Services\GuestManager();
+        });
+        $this->app->bind(\App\Requests\Contracts\RequestManager::class, function ($app) {
+            return new \App\Requests\Services\RequestManager();
+        });
     }
 
     /**

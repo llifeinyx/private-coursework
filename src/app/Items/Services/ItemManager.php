@@ -3,10 +3,10 @@
 namespace App\Items\Services;
 
 use App\Items\Models\Item;
-use App\Traits\Models\SearchableTrait;
 use App\Items\Events\ItemWasCreated;
 use App\Items\Events\ItemWasUpdated;
 use App\Items\Events\ItemWasDeleted;
+use App\Traits\Services\SearchableTrait;
 
 class ItemManager implements \App\Items\Contracts\ItemManager
 {

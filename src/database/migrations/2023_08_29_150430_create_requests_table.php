@@ -1,6 +1,5 @@
 <?php
 
-use App\Items\Models\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->text('description');
-            $table->enum('status', Status::values())->default(Status::DRAFT());
-
-            $table->unsignedBigInteger('given_by_id')->nullable();
-            $table->foreign('given_by_id')
+            $table->unsignedBigInteger('guest_id');
+            $table->foreign('guest_id')
                 ->references('id')
-                ->on('users')
-                ->onDelete('set null');
-
+                ->on('guests')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('item_id');
+            $table->foreign('item_id')
+                ->references('id')
+                ->on('items')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('requests');
     }
 };

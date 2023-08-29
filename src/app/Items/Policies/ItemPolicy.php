@@ -2,7 +2,9 @@
 
 namespace App\Items\Policies;
 
-class ItemPolicy
+use App\Policies\BaseCrudPolicy;
+
+class ItemPolicy extends BaseCrudPolicy
 {
 
 }
