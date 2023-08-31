@@ -2,6 +2,7 @@
 
 namespace App\Items\Http\Controllers;
 
+use App\Guests\Models\Guest;
 use App\Http\Controllers\Controller;
 use App\Items\Models\Item;
 use App\Items\Http\Requests\CreateItemRequest;
@@ -41,6 +42,28 @@ class ItemController extends Controller
     public function get(Item $item)
     {
         $this->authorize('read', $item);
+
+        return new ItemResource($item);
+    }
+
+    /**
+     * Give item to guest
+     *
+     * @param Item $item
+     * @param Guest $guest
+     * @return ItemResource
+     */
+    public function giveToGuest(Item $item, Guest $guest)
+    {
+        $this->authorize('update', $item);
+
+        try {
+            Items::giveToGuest($item, $guest);
+        } catch (UpdateItemException $e) {
+            return new JsonResponse([
+                'message' => $e->getMessage(),
+            ], 400);
+        }
 
         return new ItemResource($item);
     }

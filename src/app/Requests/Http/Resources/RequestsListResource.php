@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Requests\Http\Resources;
-
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RequestsListResource extends ResourceCollection
 {
-    protected function itemToArray($request, $item)
+    public function toArray($request)
     {
-        return new RequestResource($item);
+        return [
+            'data' => RequestResource::collection($this->collection)
+        ];
     }
 }

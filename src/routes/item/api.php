@@ -11,4 +11,5 @@ Route::middleware('auth:sanctum')
         Route::post('/', [ItemController::class, 'create']);
         Route::post('/{item}', [ItemController::class, 'update'])->whereNumber('item');
         Route::delete('/{item}', [ItemController::class, 'delete'])->whereNumber('item');
+        Route::get('/{item}/{guest}', [ItemController::class, 'giveToGuest'])->whereNumber(['item', 'guest']);
     });
